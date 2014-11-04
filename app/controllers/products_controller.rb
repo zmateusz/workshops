@@ -1,4 +1,15 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+  before_filter :is_owner?, only: [:edit, :update, :destroy]
+
+  def is_owner?
+    if current_user.id == product.user_id
+      true
+    else
+      redirect_to category_products_path, notice: 'not owner'
+    end
+  end
+
   expose(:category)
   expose(:products)
   expose(:product)
@@ -45,6 +56,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:title, :description, :price, :category_id)
+    params.require(:product).permit(:title, :description, :price, :category_id, :user_id)
   end
 end
