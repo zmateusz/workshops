@@ -120,6 +120,7 @@ GEM
     net-http-persistent (2.9.4)
     net-http-pipeline (1.0.1)
     orm_adapter (0.5.0)
+    pg (0.17.1-x86-mingw32)
     polyglot (0.3.5)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -189,8 +190,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.9)
-    sqlite3 (1.3.9-x86-mingw32)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -223,7 +222,6 @@ GEM
     warden (1.2.3)
       rack (>= 1.0)
     websocket (1.2.0)
-    win32console (1.3.2)
     win32console (1.3.2-x86-mingw32)
 
 PLATFORMS
@@ -242,6 +240,7 @@ DEPENDENCIES
   ffaker
   haml-rails
   jquery-rails
+  pg
   pry
   quiet_assets
   rails (= 4.1.5)
@@ -250,7 +249,6 @@ DEPENDENCIES
   shoulda-matchers
   simple_form (~> 3.1.0rc)
   spring
-  sqlite3 (= 1.3.9)
   therubyracer
   travis
   tzinfo-data

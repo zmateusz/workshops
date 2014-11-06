@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
-gem 'tzinfo-data'
-gem 'sqlite3', '1.3.9'
+# ruby '2.1.2'
+ruby '1.9.3'
 
 gem 'rails', '4.1.5'
 
-#gem 'pg'
+gem 'tzinfo-data'
+# gem 'sqlite3', '1.3.9'
+gem 'pg'
 gem 'draper'
 gem 'decent_exposure'
 gem 'decent_decoration'

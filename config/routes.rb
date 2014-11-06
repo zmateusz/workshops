@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   end
 
   root 'categories#index'
+  resources :products
 end
