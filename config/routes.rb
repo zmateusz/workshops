@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get 'profile/show'
-  # get 'profile/:id' => 'profile#show'
-
+  
   devise_for :users
   resources :categories do
     resources :products do
