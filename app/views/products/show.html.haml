@@ -1,26 +1,41 @@
-%p#error= flash[:error]
+.row
+  .col-md-6.col-md-offset-2
+    %p#error= flash[:error]
+.row
+  .col-md-6.col-md-offset-2
+    .panel.panel-info
+      .panel-heading 
+        %b Product information
+      .panel-body
+        %img{:src=>"http://placekitten.com/g/200/250",:style=>"float:left;margin-right:20px;"}
+        %h3= product.title
+        = product.description
+        %h4
+          Rating: #{product.average_rating} <small>#{pluralize(product.reviews.count, 'review')}</small>
+        %h3
+          %span.label.label-success{:style => "display:inline-block;"}
+            Price: #{product.price}
+        %br
+        Category:
+        = link_to category.name, category_path(category.id)
+  .col-md-3
+    -if user_signed_in?
+      .panel.panel-info
+        .panel-heading 
+          %b Write a review
+        .panel-body
+          = render 'reviews/form'
+.row
+  .col-md-6.col-md-offset-2
+    .panel.panel-info
+      .panel-heading 
+        %b Product reviews
+      %ul.list-group
+        = render reviews
 
-%p
-  %b Title:
-  = product.title
-%p
-  %b Description:
-  = product.description
-%p
-  %b Price:
-  = product.price
+  .col-md-3
+    -if user_signed_in? && current_user == product.user
+      = link_to 'Edit', edit_category_product_path(category.id, product.id), class: 'btn btn-warning'
+    = link_to 'Back', category_products_path, class: 'btn btn-primary'
 
-%p
-  %b Category
-  = product.category.name
 
--if user_signed_in?
-  %h3 Reviews
-  = render 'reviews/form'
-
-= render reviews
-
--if user_signed_in? && current_user == product.user
-  = link_to 'Edit', edit_category_product_path(category.id, product.id)
-  \|
-= link_to 'Back', category_products_path, class: 'btn btn-primary'

@@ -1,21 +1,24 @@
-%h1 Listing categories
+.row
+  .col-md-6.col-md-offset-3
+    -if notice
+      .alert.alert-info
+        %p#notice= notice
+    -if user_signed_in? && current_user.admin
+      = link_to 'New Category', new_category_path, :class => 'btn btn-primary'
+    %h2 Listing categories
 
-%table.table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
+    %table.table.table-hover
+      %tr
+        %th.col-md-3 Name
+        %th Products
+      - categories.each do |category|
+        %tr{:style=>"font-size: 26px "}
+          %td= link_to category.name, category, :class => 'btn btn-default btn-lg'
+          %td= category.products.count
+          -if user_signed_in? && current_user.admin
+            %td= link_to 'Edit', edit_category_path(category), :class => 'btn btn-warning'
+            %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'
 
-  - categories.each do |category|
-    %tr
-      %td= category.name
-      %td= link_to 'Show', category
-      -if user_signed_in? && current_user.admin
-        %td= link_to 'Edit', edit_category_path(category)
-        %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+    %br
 
-%br
 
--if user_signed_in? && current_user.admin
-  = link_to 'New Category', new_category_path

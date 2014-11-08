@@ -1,4 +1,8 @@
-%p= review.content
-%p
+%li.list-group-item
+  %p= review.content
+  Rated
   %b= review.rating
-  %em= review.author
+  by
+  =link_to review.author, :controller => :profile, :action => :show, :id => review.user.id
+  at
+  = review.created

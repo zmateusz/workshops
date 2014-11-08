@@ -1,28 +1,17 @@
-%p#notice= notice
+.row
+  .col-md-6.col-md-offset-3
+    %p#notice= notice
 
-%h1 Listing products
+    %h2 Listing products
 
-%table.table
-  %tr
-    %th Title
-    %th Description
-    %th Price
-    %th user
-    %th
-    %th
-    %th
-
-  - products.each do |product|
-    %tr
-      %td= product.title
-      %td= product.description
-      %td= product.price
-      %td= link_to product.user_id, :controller => :profile, :action => :show, :id => product.user_id
-      %td= link_to 'Show', category_product_path(product.category, product)
-      -if user_signed_in? && current_user == product.user
-        %td= link_to 'Edit', edit_category_product_path(product.category, product)
-        %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
-      -else
-        %td
-
-%br
+    - products.each do |product|
+      .well.well-sm
+        %h4
+          = link_to product.title, category_product_path(product.category, product)
+        = product.description
+        %h3 
+          %span.label.label-success{:style => "display:inline-block;"}
+            Price: #{product.price}
+          -if user_signed_in? && current_user == product.user
+            = link_to 'Edit', edit_category_product_path(product.category, product), :class => "btn btn-warning"
+            = link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"

@@ -1,8 +1,36 @@
-%h1 Profile#show
-%p Find me in app/views/profile/show.html.haml
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-info
+      .panel-heading 
+        %b User profile
+      .panel-body
+        %img{:src=>"http://placekitten.com/g/150/150", :style => "float:left;margin-right: 20px;"}
+        %h4=user.firstname+" "+user.lastname
+        %p=user.email
+        %p User since: #{user.created_at.strftime("%d-%m-%Y")} 
+        %p Review count: #{user.reviews.count}
 
-=user.email
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-info
+      .panel-heading 
+        %b Recent reviews
+      %ul.list-group
+        - @reviews.each do |review|
+          %li.list-group-item
+            Rated
+            =link_to review.product.title, categories_path
+            with #{review.rating}, #{review.created}
+            %br
+            =review.content
+          
 
-- @reviews.each do |review|
-  %p= review.content 
-  =review.created
+
+
+
+        
+
+
+
+        
+

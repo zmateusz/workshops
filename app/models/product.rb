@@ -8,12 +8,14 @@ class Product < ActiveRecord::Base
 
   def average_rating
     r=0
-    n=0
     reviews = self.reviews
     reviews.each do |x|
-      n+=1
       r+=x.rating
     end
-    return (r/n.to_f).round(2)
+    if reviews.count != 0
+      (r/reviews.count.to_f).round(1)
+    else
+      0.0
+    end
   end
 end
