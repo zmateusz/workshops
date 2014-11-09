@@ -1,11 +1,8 @@
 source 'https://rubygems.org'
-# ruby '2.1.2'
-ruby '1.9.3'
+ruby '2.1.2'
 
 gem 'rails', '4.1.5'
 
-gem 'tzinfo-data'
-# gem 'sqlite3', '1.3.9'
 gem 'pg'
 gem 'draper'
 gem 'decent_exposure'
@@ -22,6 +19,7 @@ gem 'jquery-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'travis'
 gem 'ffaker'
+gem 'rails_12factor', group: :production
 
 group :development do
   gem 'spring'
