@@ -1,7 +1,10 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, only: [:destroy, :create]
+  before_action :is_owner?, only: :destroy
 
   expose(:review)
   expose(:product)
+  expose(:category)
 
   def edit
   end
@@ -25,4 +28,11 @@ class ReviewsController < ApplicationController
     def review_params
       params.require(:review).permit(:content, :rating, :user_id)
     end
+
+  def is_owner?
+    if review.user != current_user
+      flash[:error] = "You are not allowed to destroy this review."
+      redirect_to category_product_url(category, product) and return
+    end
+  end
 end

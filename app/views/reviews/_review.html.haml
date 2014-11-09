@@ -6,3 +6,5 @@
   =link_to review.author, :controller => :profile, :action => :show, :id => review.user.id
   at
   = review.created
+  -if user_signed_in? && current_user == review.user
+    = link_to 'Destroy', category_product_review_path(product.category, product, review), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-xs"

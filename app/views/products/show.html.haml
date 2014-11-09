@@ -1,6 +1,12 @@
 .row
   .col-md-6.col-md-offset-2
-    %p#error= flash[:error]
+    -if flash[:error]
+      .alert.alert-danger
+        %p#error= flash[:error]
+    -if notice
+      .alert.alert-success
+        %p#notice= notice
+
 .row
   .col-md-6.col-md-offset-2
     .panel.panel-info
