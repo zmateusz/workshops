@@ -19,7 +19,7 @@
         - @reviews.each do |review|
           %li.list-group-item
             Rated
-            =link_to review.product.title, categories_path
+            =link_to review.product.title, category_product_path(review.product.category, review.product)
             with #{review.rating}, #{review.created}
             %br
             =review.content
